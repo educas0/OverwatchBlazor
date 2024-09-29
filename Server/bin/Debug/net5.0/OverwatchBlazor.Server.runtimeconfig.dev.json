@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\RogStrix_educas\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\RogStrix_educas\\.nuget\\packages"
+    ]
+  }
+}

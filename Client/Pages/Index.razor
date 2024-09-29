@@ -1,0 +1,83 @@
+﻿@page "/"
+<!--@model Cliente;-->
+
+@using OverwatchBlazor.Client.Services.interfaces
+@using OverwatchBlazor.Shared
+@inject NavigationManager navigate
+@inject IJSRuntime js
+@inject IAuthService IAuthSrv
+
+
+<h1>Página HOME</h1>
+
+
+<!--Si no está logueado pinta el login -->
+
+
+
+
+
+<div class="text-center">
+
+
+
+    <div class="row">
+        <div class="col">
+            <a href="/Prueba/BuscarPersonas">ListaPersona</a>
+            <h3><strong>Acceso a Overwatch2.com</strong></h3>
+            <p>Para poder disfrutar de algunos de nuestros servicios, debes estar registrado. Registrarse en Overwatch2.com es rápido, fácil y GRATIS!</p>
+        </div>
+    </div>
+
+
+
+    @if (!validado)
+    {
+        <OverwatchBlazor.Client.Pages.ZonaCliente.Login></OverwatchBlazor.Client.Pages.ZonaCliente.Login>
+    }
+
+
+</div>
+
+@code{
+    Credenciales credencialesCliente = new Credenciales();
+    List<String> erroresLogin = new List<String>();
+
+    bool validado = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var cliente = await IAuthSrv.GetClienteLogged();
+
+        if(cliente != null)
+        {
+            validado = true;
+        }
+    }
+
+
+    protected async Task LoginIn()
+    {
+
+
+        await js.InvokeVoidAsync("console.log", this.credencialesCliente);
+
+        RESTMessage _resp = await this.IAuthSrv.Login(this.credencialesCliente);
+
+
+        if (_resp.Errores == null)
+        {
+            navigate.NavigateTo("/cliente/panel/inicio");
+
+        }
+        else
+        {
+            erroresLogin = _resp.Errores;
+        }
+    }
+
+
+
+}

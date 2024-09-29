@@ -1,0 +1,21 @@
+﻿<h3>Bebe</h3>
+
+
+<label> Texto de Papi3: @datoRecibido</label>
+
+
+
+
+
+@code {
+
+    [Parameter]
+    public string datoRecibido { get; set; } = "-";
+    
+
+    public string RecibeParametro(string txt)
+    {
+        return datoRecibido = txt;
+    }
+
+}

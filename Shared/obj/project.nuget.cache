@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8isfClOSEizCex7KSk1TfDo0p52pRnwkgxm/hrKBziHNk2EDGqB3khDUD1oUyKbifGVv3LSBZXwFX4F1LLra9g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\RogStrix_educas\\source\\repos\\OverwatchBlazor\\Shared\\OverwatchBlazor.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RogStrix_educas\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

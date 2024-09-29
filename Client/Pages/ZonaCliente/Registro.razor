@@ -1,0 +1,200 @@
+﻿@*@model Cliente;*@
+
+
+@page "/Cliente/Registro"
+
+@using OverwatchBlazor.Client.Services.interfaces
+@using OverwatchBlazor.Shared
+
+@inject IJSRuntime servicioJS
+@inject IAuthService servicioAuth
+@inject NavigationManager navigate
+
+<h3>Registro</h3>
+
+@if (this.erroresRegistro.Count != 0)
+{
+    <div class="row">
+        <div class="col">
+            <ul class="text-danger">
+                @foreach (String error in this.erroresRegistro)
+                {
+                    <li>@error</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+<div class="row">
+
+    <div class="col">
+        <h1>Rellena los datos para crear el registro :) </h1>
+        <!-- fila de mensajes de error procedentes del servicio REST del lado del servidor, cuando hemos enviado los datos .... -->
+        @if (this.erroresRegistro.Count != 0)
+        {
+            <div class="row">
+                <div class="col">
+                    <ul class="text-danger">
+                        @foreach (String error in this.erroresRegistro)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+        <!-- --------------------------------------------------------------------------------------------------------------------  -->
+        <div class="row">
+            <div class="col">
+                <EditForm Model="@nuevocliente" OnValidSubmit="@RegistrarCliente">
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <legend style="font-size:14px; color:green">DATOS DE ACCESO</legend>
+
+                    <div class="row">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <div style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="email">CORREO ELECTRONICO *</label>
+                                <InputText id="email" @bind-Value="nuevocliente.CredencialesAcceso.Email" class="form-control" placeholder="...Direccion de email..."></InputText>
+                                <ValidationMessage For="@(()=>nuevocliente.CredencialesAcceso.Email)"></ValidationMessage>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <div style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="password">CONTRASEÑA *</label>
+                                <input type="password" id="password" @bind-value="nuevocliente.CredencialesAcceso.Password" class="form-control" placeholder="...tu contraseña, entre 6 y 15 chars...">
+                                <ValidationMessage For="@(()=>nuevocliente.CredencialesAcceso.Password)"></ValidationMessage>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <div style="width:33%; float:left; min-height:1px; padding-right:15px; padding-left: 15px;">
+                            <div class="form-group">
+
+                                <p style="font-style:italic; font-size: .8em; color:#666666; "> Te enviaremos un correo electrónico para validar que tu dirección sea correcta </p>
+                            </div>
+
+
+                        </div>
+
+                        <div style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="repassword">CONFIRMA TU CONTRASEÑA *</label>
+                                <input type="password" class="form-control" id="repassword" formControlName="repassword" placeholder="...confirmar contraseña...">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br />
+
+                    <div class="row">
+
+                        <span style="font-size:14px; color:green">DATOS PERSONALES</span>
+
+                        <div class="col-md-1"></div>
+
+                        <div style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="nombre">NOMBRE *</label>
+                                <InputText @bind-Value="nuevocliente.Nombre" id="nombre" class="form-control" placeholder="...tu nombre..."></InputText>
+                                <ValidationMessage For="@(()=>nuevocliente.Nombre)"></ValidationMessage>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <div style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="primape">PRIMER APELLIDO *</label>
+                                <InputText @bind-Value="nuevocliente.Apellido" id="primeape" class="form-control" placeholder="...tu primer apellido..."></InputText>
+                                <ValidationMessage For="@(()=>nuevocliente.Apellido)"></ValidationMessage>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-4" style="margin-top:20px;"></div>
+
+                        <div class="col-md-4" style="margin-top:50px;">
+
+                            <button type="submit" style="width:80%;" class="btn btn-success">
+                                <span style="color:white" class="glyphicon glyphicon-ok">
+                                    REGISTRAR
+                                </span>
+                            </button>
+                            <br />
+                        </div>
+                    </div>
+
+                </EditForm>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+@code {
+    private Cliente nuevocliente = new Cliente();
+    private List<String> erroresRegistro = new List<String>();
+
+    protected async Task RegistrarCliente()
+    {
+        await servicioJS.InvokeVoidAsync("console.log", this.nuevocliente);
+
+        RESTMessage _resultadoRegistro = await servicioAuth.Registro(this.nuevocliente);
+
+        await servicioJS.InvokeVoidAsync("console.log", _resultadoRegistro);
+
+        if (_resultadoRegistro.Errores == null)
+        {
+            this.navigate.NavigateTo("/cliente/login");
+        }
+        else
+        {
+            erroresRegistro = _resultadoRegistro.Errores;
+        }
+    }
+
+
+}

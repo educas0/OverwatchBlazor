@@ -1,0 +1,12 @@
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\bin\Debug\net5.0\OverwatchBlazor.Shared.deps.json
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\bin\Debug\net5.0\OverwatchBlazor.Shared.dll
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\bin\Debug\net5.0\ref\OverwatchBlazor.Shared.dll
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\bin\Debug\net5.0\OverwatchBlazor.Shared.pdb
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.AssemblyInfoInputs.cache
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.AssemblyInfo.cs
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.csproj.CoreCompileInputs.cache
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.dll
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\ref\OverwatchBlazor.Shared.dll
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.pdb
+C:\Users\RogStrix_educas\source\repos\OverwatchBlazor\Shared\obj\Debug\net5.0\OverwatchBlazor.Shared.csproj.AssemblyReference.cache

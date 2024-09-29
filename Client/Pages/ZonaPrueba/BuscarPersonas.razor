@@ -1,0 +1,55 @@
+﻿@page "/Prueba/BuscarPersonas"
+@inject OverwatchBlazor.Client.Services.interfaces.IPersonaService _personaSrv
+@using OverwatchBlazor.Shared
+
+
+<h3>BuscarPersonas</h3>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>edad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (_personas.Count != 0)
+        {
+            @foreach (var item in _personas)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.DNI</td>
+                    <td>@item.Edad</td>
+                    @*<td><button class="btn btn-link" @onclick="(()=>MostrarPersona.InvokeAsync(item))">Mostrar</button></td>
+                    <td><button class="btn btn-link" @onclick="(()=>EliminarPersona(item))">Eliminar</button></td>
+                    <td><button class="btn btn-link" @onclick="(()=>EditarPersona(item))">Editar</button></td>*@
+                </tr>
+            }
+        }
+        else
+        {
+            <p class="alert">Lista de Personas vacía...</p>
+        }
+
+
+    </tbody>
+</table>
+
+
+@code {
+
+    List<Persona>  _personas = new List<Persona>();
+
+
+        protected override async Task OnInitializedAsync()
+        {
+        _personas = await _personaSrv.BuscarPerosnas();
+        }
+
+        }

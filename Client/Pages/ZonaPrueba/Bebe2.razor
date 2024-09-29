@@ -1,0 +1,17 @@
+﻿<h3>Bebe2</h3>
+
+
+<input type="text"   @bind="@dato" @onblur="(()=>datoEnviar.InvokeAsync(dato))" />
+<button>OK</button>
+
+
+
+@code {
+    [Parameter]
+    public EventCallback<string> datoEnviar { get; set; }
+
+
+    string dato;
+
+
+}

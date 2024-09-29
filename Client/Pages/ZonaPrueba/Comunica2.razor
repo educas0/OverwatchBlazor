@@ -1,0 +1,32 @@
+﻿@page "/Prueba/comunica2"
+
+<h3>Comunica2, recibe el valor del hijo</h3>
+
+
+<div class="row">
+    <div class="col">
+
+        <label>@textoRecibido</label>
+    </div>
+    <div class="col">
+        <Bebe2 datoEnviar="RecibeDato"></Bebe2>
+
+    </div>
+
+</div>
+
+
+
+@code {
+
+    public string textoRecibido;
+
+
+    public void  RecibeDato(string dato)
+    {
+        this.textoRecibido = dato;
+    }
+
+
+
+}
